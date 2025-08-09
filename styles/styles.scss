@@ -1,0 +1,238 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+
+$card-width: 80px;
+$card-height: 120px;
+$bg-table: #064420;
+$card-bg: white;
+$font-color: #2a0000;
+$font-color-two: #fcd0d0;
+
+body {
+  overflow-x: hidden;
+  background: $bg-table;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  position: relative;
+  background-image: url("../public/tapete_fondo.png");
+  background-size: cover;
+
+  &:after {
+    position: absolute;
+    top: 6px;
+    right: 24px;
+    content: "";
+    display: block;
+    width: clamp(60px, 10vw, 240px);
+    aspect-ratio: 2;
+    background-color: transparent;
+    background-image: url("../public/fournier.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    @media (max-width: 480px) {
+      top: 12px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+  }
+
+  .title-game {
+    font-size: clamp(24px, 3vw, 36px);
+    text-align: center;
+    margin-top: 24px;
+    color: #980000;
+
+    @media (max-width: 480px) {
+      margin-top: 48px;
+    }
+  }
+
+  .blackjack-container {
+    width: 100%;
+    max-width: 600px;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30px;
+
+    .dealer-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .player-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dealer,
+    .player {
+      font-size: 16px;
+      margin-bottom: 16px;
+      width: fit-content;
+      text-align: center;
+      position: relative;
+      color: $font-color-two;
+
+      &:after {
+        position: absolute;
+        content: "";
+        display: block;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $font-color-two;
+      }
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0;
+
+      .card {
+        width: $card-width;
+        height: $card-height;
+        perspective: 1000px; // Necesario para el flip
+        position: relative;
+
+        // Contenedor interno que rota
+        .card-inner {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          transform-style: preserve-3d;
+          transition: transform 0.6s ease;
+        }
+
+        &.flipped .card-inner {
+          transform: rotateY(180deg);
+        }
+
+        // Caras
+        .card-front,
+        .card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          font-size: 1.2em;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        &.clubs,
+        &.spades {
+          .card-back {
+            color: #000;
+          }
+        }
+
+        &.diamonds,
+        &.hearts {
+          .card-back {
+            color: #c00000;
+          }
+        }
+
+        // Reverso
+        .card-front {
+          background-image: url("../public/fournier.png");
+          background-size: contain;
+          background-position: center;
+          background-color: $font-color;
+          background-repeat: no-repeat;
+
+          &:after {
+            border-color: $font-color;
+          }
+        }
+
+        // Cara visible
+        .card-back {
+          background: $card-bg;
+          transform: rotateY(180deg);
+
+          &.spades,
+          &.clubs {
+            color: #000;
+          }
+
+          &.hearts,
+          &.diamonds {
+            color: #c00000;
+          }
+
+          &:after {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #c00000;
+            border-radius: 8px;
+            background-color: transparent;
+            width: 80%;
+            aspect-ratio: 80 / 130;
+          }
+        }
+      }
+    }
+
+    .controls {
+      .btn {
+        background: #c7f9cc;
+        color: black;
+        border: none;
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        &:hover {
+          background: #80ed99;
+        }
+      }
+    }
+
+    .result {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000000b8;
+      width: 100vw;
+      height: 15vw;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      font-size: clamp(16px, 5vw, 24px);
+      color: #980000;
+    }
+  }
+}

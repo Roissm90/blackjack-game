@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div class="blackjack-container">
+      <h1 class="title-game">Blackjack</h1>
+
+      <div class="dealer-area">
+        <h2 class="dealer">Crupier</h2>
+        <div id="dealer-cards" class="cards"></div>
+        <div id="dealer-score" class="score">Puntos: ?</div>
+      </div>
+
+      <div class="player-area">
+        <h2 class="player">Jugador</h2>
+        <div id="player-cards" class="cards"></div>
+        <div id="player-score" class="score">Puntos: 0</div>
+      </div>
+
+      <div class="controls">
+        <button id="btn-hit" class="btn">Pedir</button>
+        <button id="btn-stand" class="btn">Plantarse</button>
+        <button id="btn-newgame" class="btn">Nueva Partida</button>
+      </div>
+
+      <div id="result" class="result"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>

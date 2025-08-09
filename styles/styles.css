@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+
+body {
+  overflow-x: hidden;
+  background: #064420;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  position: relative;
+  background-image: url("../public/tapete_fondo.png");
+  background-size: cover;
+}
+body:after {
+  position: absolute;
+  top: 6px;
+  right: 24px;
+  content: "";
+  display: block;
+  width: clamp(60px, 10vw, 240px);
+  aspect-ratio: 2;
+  background-color: transparent;
+  background-image: url("../public/fournier.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+@media (max-width: 480px) {
+  body:after {
+    top: 12px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+body .title-game {
+  font-size: clamp(24px, 3vw, 36px);
+  text-align: center;
+  margin-top: 24px;
+  color: #980000;
+}
+@media (max-width: 480px) {
+  body .title-game {
+    margin-top: 48px;
+  }
+}
+body .blackjack-container {
+  width: 100%;
+  max-width: 600px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+}
+body .blackjack-container .dealer-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .blackjack-container .player-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .blackjack-container .dealer,
+body .blackjack-container .player {
+  font-size: 16px;
+  margin-bottom: 16px;
+  width: fit-content;
+  text-align: center;
+  position: relative;
+  color: #fcd0d0;
+}
+body .blackjack-container .dealer:after,
+body .blackjack-container .player:after {
+  position: absolute;
+  content: "";
+  display: block;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fcd0d0;
+}
+body .blackjack-container .cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+}
+body .blackjack-container .cards .card {
+  width: 80px;
+  height: 120px;
+  perspective: 1000px;
+  position: relative;
+}
+body .blackjack-container .cards .card .card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+body .blackjack-container .cards .card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+body .blackjack-container .cards .card .card-front,
+body .blackjack-container .cards .card .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+body .blackjack-container .cards .card.clubs .card-back, body .blackjack-container .cards .card.spades .card-back {
+  color: #000;
+}
+body .blackjack-container .cards .card.diamonds .card-back, body .blackjack-container .cards .card.hearts .card-back {
+  color: #c00000;
+}
+body .blackjack-container .cards .card .card-front {
+  background-image: url("../public/fournier.png");
+  background-size: contain;
+  background-position: center;
+  background-color: #2a0000;
+  background-repeat: no-repeat;
+}
+body .blackjack-container .cards .card .card-front:after {
+  border-color: #2a0000;
+}
+body .blackjack-container .cards .card .card-back {
+  background: white;
+  transform: rotateY(180deg);
+}
+body .blackjack-container .cards .card .card-back.spades, body .blackjack-container .cards .card .card-back.clubs {
+  color: #000;
+}
+body .blackjack-container .cards .card .card-back.hearts, body .blackjack-container .cards .card .card-back.diamonds {
+  color: #c00000;
+}
+body .blackjack-container .cards .card .card-back:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #c00000;
+  border-radius: 8px;
+  background-color: transparent;
+  width: 80%;
+  aspect-ratio: 80/130;
+}
+body .blackjack-container .controls .btn {
+  background: #c7f9cc;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+body .blackjack-container .controls .btn:hover {
+  background: #80ed99;
+}
+body .blackjack-container .result {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7215686275);
+  width: 100vw;
+  height: 15vw;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  font-size: clamp(16px, 5vw, 24px);
+  color: #980000;
+}
+
+/*# sourceMappingURL=styles.css.map */
